@@ -115,33 +115,34 @@
 			<!-- Modal content-->
 			<div class="modal-content">
 				<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal">&times;</button>
 				<h4 class="modal-title">Cadastro</h4>
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
 				</div>
 				<div class="modal-body">
 				<form method="POST" action="cadastro.php" enctype="multipart/form-data">
 					<fieldset>
-					<table class="table"><tr>
-					<th colspan="2">Produto:</th>
-					</tr>
-					<tr><td scope="col">Nome do produto</td><td><input type="text" class="form-control" name="Nome_Produto" size = "50" required></td></tr>
-					<tr><td scope="col">SKU</td><td><input type="text"  class="form-control"name="SKU"  size = "50" required></td></tr>
-					<tr><td scope="col">Foto</td><td> <input type="file"  class="form-control" name="Foto" accept="image"></td></tr>
-					<tr><t scope="col"d>Decrição</td><td><textarea id="descricao"  class="form-control"name="Descricao" rows="4" cols="50"></textarea></td></tr>
-					<tr><td scope="col">Estoque</td><td> <input type="number"  class="form-control"name="Estoque" size = "50"></td></tr>
-					<tr><td scope="col">Preço</td><td> <input type="number"  class="form-control" step="0.01" name="Preco" size = "50"></td></tr>
-					<tr><td scope="col">Tipo de variação</td><td><select name="Variacao" class="form-control">
+					<label for="nome" class="form-label m-2">Nome do produto</label>
+					<input type="text" class="form-control m-3"  id="nome" name="Nome_Produto" size = "50" required>
+					<label for="SKU" class="form-label m-2">SKU</label>
+					<input type="text"  class="form-control m-3" id="SKU" name="SKU"  size = "50" required>
+					<label for="foto" class="form-label m-2">Foto</label>
+					<input type="file"  class="form-control m-3" id="foto" name="Foto" accept="image">
+					<label for="descricao" class="form-label m-2">Decrição</label>
+					<textarea id="descricao"  class="form-control m-3" id="descricao" name="Descricao" rows="4" cols="50"></textarea>
+					<label for="estoque" class="form-label m-2">Estoque</label>
+					<input type="number"  class="form-control m-3" id="estoque" name="Estoque" size = "50">
+					<label for="preco" class="form-label m-2">Preço</label>
+					<input type="number"  class="form-control m-3" id="preco" step="0.01" name="Preco" size = "50">
+					<label for="variacao" class="form-label m-3">Tipo de variação</label>
+					<select name="Variacao" class="form-control m-3" id="variacao">
 									<option value="0">Nenhum</option>
 									<option value="1">Cor</option>
 									<option value="2">Tamanho</option>
 									<option value="3">Cor e Tamanho</option>
-									</select><br><br></td></tr>
-					<tr><td scope="col">Descrição da Variação</td><td> <textarea id="Desc_Variacao"  class="form-control" name="Desc_Variacao" rows="4" cols="50"></textarea></td></tr>
-					<br><br>
-						<tr><td></td><td>
-							<input type="submit" Value="Cadastrar" class="btn btn-primary">
-						</td></tr>
-						</table>
+									</select>
+					<label for="DescVariacao" class="form-label m-2">Descrição da Variação</label>
+					<textarea id="Desc_Variacao"  class="form-control m-3" id="DescVariacao" name="Desc_Variacao" rows="4" cols="50"></textarea>
+					<input type="submit" Value="Cadastrar" class="btn btn-primary m-3">
 					</fieldset>
 					</form>
 				</div>
