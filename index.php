@@ -95,7 +95,7 @@
 						echo '">Editar</button>';
 						echo ' <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#';
 						echo $linha['SKU'];
-						echo '">Excluir</button>';
+						echo 'Excluir">Excluir</button>';
 						echo '</th>';
 
 
@@ -143,11 +143,12 @@
 					<label for="DescVariacao" class="form-label m-2">Descrição da Variação</label>
 					<textarea id="Desc_Variacao"  class="form-control m-3" id="DescVariacao" name="Desc_Variacao" rows="4" cols="50"></textarea>
 					<input type="submit" Value="Cadastrar" class="btn btn-primary m-3">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 					</fieldset>
 					</form>
 				</div>
 				<div class="modal-footer">
-				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				
 				</div>
 			</div>
 			
@@ -157,42 +158,11 @@
 
 
 		<?php
-			include('conectaBanco.php');
-			error_reporting(E_ALL & ~E_NOTICE);
-
-
-			$sql="SELECT * FROM Produtos";
-			$comando = $mysqli->prepare($sql);
-			$comando->execute();
-			$resultado = $comando->get_result();
-			while ($linha =$resultado->fetch_assoc()){
-				echo '<!-- Modal ';	
-				echo $linha['SKU'];
-				echo ' -->
-				<div class="modal fade" id="';
-				echo $linha['SKU'];
-				echo '" tabindex="-1" role="dialog" aria-labelledby="';
-				echo $linha['SKU'];
-				echo 'ModalLabel">
-				<div class="modal-dialog" role="document">
-					<div class="modal-content">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-						<h4 class="modal-title" id="myModalLabel">Iten ';
-						echo $linha['SKU'];
-						echo '</h4>
-					</div>
-					<div class="modal-body"></div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-						<button type="button" class="btn btn-primary">Save changes</button>
-					</div>
-					</div>
-				</div>
-				</div>';
-			}
+		include('editarModal.php');
 		?>
-
+		<?php
+		include('excluirModal.php');
+		?>
 
 
 
