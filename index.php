@@ -15,7 +15,7 @@
 		<div class="container-fluid">
 			<h1>Teste</h1>
 			<h2>Teste</h2>
-			<button type="button" class="btn btn-dark">Teste</button>
+			<button type="button" class="btn btn-dark">Cadastro</button>
 
 			
 		</div>
@@ -54,7 +54,7 @@
 				<th scope="col">Nome</th>
 				<th scope="col">estoque</th>
 				<th scope="col">preco</th>
-				<th scope="col"></th>
+				<th scope="col"><button type="button" class="btn btn-success" data-toggle="modal" data-target="#ModalCadastro">Cadastrar</button></th>
 				</tr>
 			</thead>
 			<tbody>
@@ -108,6 +108,53 @@
 			</tbody>
 		</table>
 
+		<!-- Modal Cadastro-->
+		<div class="modal fade" id="ModalCadastro" role="dialog">
+			<div class="modal-dialog">
+			
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+				<h4 class="modal-title">Cadastro</h4>
+				</div>
+				<div class="modal-body">
+				<form method="POST" action="cadastro.php" enctype="multipart/form-data">
+					<fieldset>
+					<table class="table"><tr>
+					<th colspan="2">Produto:</th>
+					</tr>
+					<tr><td scope="col">Nome do produto</td><td><input type="text" class="form-control" name="Nome_Produto" size = "50" required></td></tr>
+					<tr><td scope="col">SKU</td><td><input type="text"  class="form-control"name="SKU"  size = "50" required></td></tr>
+					<tr><td scope="col">Foto</td><td> <input type="file"  class="form-control" name="Foto" accept="image"></td></tr>
+					<tr><t scope="col"d>Decrição</td><td><textarea id="descricao"  class="form-control"name="Descricao" rows="4" cols="50"></textarea></td></tr>
+					<tr><td scope="col">Estoque</td><td> <input type="number"  class="form-control"name="Estoque" size = "50"></td></tr>
+					<tr><td scope="col">Preço</td><td> <input type="number"  class="form-control" step="0.01" name="Preco" size = "50"></td></tr>
+					<tr><td scope="col">Tipo de variação</td><td><select name="Variacao" class="form-control">
+									<option value="0">Nenhum</option>
+									<option value="1">Cor</option>
+									<option value="2">Tamanho</option>
+									<option value="3">Cor e Tamanho</option>
+									</select><br><br></td></tr>
+					<tr><td scope="col">Descrição da Variação</td><td> <textarea id="Desc_Variacao"  class="form-control" name="Desc_Variacao" rows="4" cols="50"></textarea></td></tr>
+					<br><br>
+						<tr><td></td><td>
+							<input type="submit" Value="Cadastrar" class="btn btn-primary">
+						</td></tr>
+						</table>
+					</fieldset>
+					</form>
+				</div>
+				<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+			
+			</div>
+		</div>
+
+
+
 		<?php
 			include('conectaBanco.php');
 			error_reporting(E_ALL & ~E_NOTICE);
@@ -123,7 +170,9 @@
 				echo ' -->
 				<div class="modal fade" id="';
 				echo $linha['SKU'];
-				echo '" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+				echo '" tabindex="-1" role="dialog" aria-labelledby="';
+				echo $linha['SKU'];
+				echo 'ModalLabel">
 				<div class="modal-dialog" role="document">
 					<div class="modal-content">
 					<div class="modal-header">
