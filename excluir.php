@@ -1,9 +1,7 @@
 <?php
 include('conectaBanco.php');
 error_reporting(E_ALL & ~E_NOTICE);
-
-//$_GET[
-$SKU=$_GET['SKU'];
+$SKU=$_REQUEST['SKU'];
 echo "$SKU";
 $sql="DELETE FROM Variacao_Desc WHERE SKU = ?";
 
@@ -46,5 +44,5 @@ else{
 			(is_dir("$dir/$file")) ? delTree("$dir/$file") : unlink("$dir/$file"); 
 		} 		
 		rmdir($dir);
-		header('location: excluiProduto.php');
+		header('location: index.php');
 ?>

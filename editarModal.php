@@ -8,6 +8,34 @@
 			$comando->execute();
 			$resultado = $comando->get_result();
 			while ($linha =$resultado->fetch_assoc()){
+				$SKU=$linha['SKU'];
+				//echo '<br>';
+				//echo $SKU;
+				
+				$sql="SELECT * FROM Variacao_Desc WHERE SKU = ?";
+				//echo $sql;
+				//echo '<br>';
+				$comando2 = $mysqli->prepare($sql);
+				if($comando2){
+					//echo "ok";
+					//echo '<br>';
+				}
+			   else{
+					//echo "erro";
+					//echo '<br>';
+			   }
+				$comando2->bind_param('s',$SKU);
+				if ($comando2->execute()===TRUE){
+					//echo 'ok';
+				}else{
+					//echo 'erro';
+				}
+				$resultado2 = $comando2->get_result();
+				while ($var = $resultado2->fetch_assoc()){
+					//print_r($var);
+					$Variacao=$var['Variacao'];
+					$Desc_Variacao=$var['Desc_Variacao'];
+				}
 				echo '<!-- Modal ';	
 				echo $linha['SKU'];
 				echo ' -->
@@ -50,14 +78,38 @@
 					echo $linha['Preco'];
 					echo'">
 					<label for="variacao" class="form-label m-3">Tipo de variação</label>
-					<select name="Variacao" class="form-control m-3" id="variacao">
-									<option value="0">Nenhum</option>
-									<option value="1">Cor</option>
-									<option value="2">Tamanho</option>
-									<option value="3">Cor e Tamanho</option>
-									</select>
+					<select name="Variacao" class="form-control m-3" id="variacao">';
+										switch ($Variacao) {
+											case 0:
+												echo '<option value="0">Nenhum</option>';
+												echo '<option value="1">Cor</option>';
+												echo '<option value="2">Tamanho</option>';
+												echo '<option value="3">Cor e Tamanho</option>';
+												break;
+											case 1:
+												echo '<option value="1">Cor</option>';
+												echo '<option value="0">Nenhum</option>';
+												echo '<option value="2">Tamanho</option>';
+												echo '<option value="3">Cor e Tamanho</option>';
+												break;
+											case 2:
+												echo '<option value="2">Tamanho</option>';
+												echo '<option value="0">Nenhum</option>';
+												echo '<option value="1">Cor</option>';
+												echo '<option value="3">Cor e Tamanho</option>';
+												break;
+											case 3:
+												echo '<option value="3">Cor e Tamanho</option>';
+												echo '<option value="0">Nenhum</option>';
+												echo '<option value="1">Cor</option>';
+												echo '<option value="2">Tamanho</option>';
+												break;
+									}
+									echo '</select>
 					<label for="DescVariacao" class="form-label m-2">Descrição da Variação</label>
-					<textarea id="Desc_Variacao"  class="form-control m-3" id="DescVariacao" name="Desc_Variacao" rows="4" cols="50"></textarea>
+					<textarea id="Desc_Variacao"  class="form-control m-3" id="DescVariacao" name="Desc_Variacao" rows="4" cols="50">';
+					echo $Desc_Variacao;
+					echo '</textarea>
 					<input type="submit" Value="Editar" class="btn btn-warning m-3">
 					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 					</fieldset>
